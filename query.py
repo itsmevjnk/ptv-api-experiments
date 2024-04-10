@@ -1,5 +1,4 @@
 import ptvapi
-import requests
 import json
 
 query = input('Enter the query you want to run: ')
@@ -7,7 +6,7 @@ query = input('Enter the query you want to run: ')
 url = ptvapi.generate_url(query)
 print('Generated URL:', url)
 
-response = requests.get(url)
-print('Response code:', response.status_code)
+status, resp = ptvapi.call(query, False)
+print('Response code:', status)
 print('Response body:')
-print(json.dumps(response.json(), indent=4))
+print(json.dumps(resp, indent=4))
